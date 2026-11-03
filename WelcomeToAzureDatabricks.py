@@ -25,7 +25,7 @@ sample_data = spark.createDataFrame(
     ],"id bigint, name string, price double, is_active boolean, status string"
 )
 
-display(sample_data)
+sample_data.write.format("delta").mode('overwrite').saveAsTable('test.bronze.PricingSamples')
 
 for curr_env in curr_envs:
     print(f'Welcome to {curr_env}😊')
